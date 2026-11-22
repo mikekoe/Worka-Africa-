@@ -52,12 +52,83 @@ Quality assurance project for [Worka Africa](https://workaafrica.com), an AI-pow
     ├── bug-reports/     # Logged defects with steps and screenshots
     └── README.md
 
+
 ## Getting Started
 
-    git clone https://github.com/<your-username>/worka-africa-qa-suite.git
-    cd worka-africa-qa-
-    npm install
-    npx playwright test
+### Prerequisites
+
+- Git
+- Node.js (LTS version) and npm
+- A modern browser (Chrome, Firefox, Safari, or Edge)
+- Postman (for running API collections manually)
+
+### Setup
+
+1. Clone the repository using SSH (ssh keys must have been added to github repo settings before this step)
+
+       git clone git@github.com:mikekoe/Worka-Africa-.git
+
+2. Move into the project folder
+
+       cd worka-africa-qa-
+
+3. Install dependencies
+
+       npm install
+
+4. Install Playwright browsers
+
+       npx playwright install
+
+5. Create your environment file from the template
+
+       cp .env.example .env
+
+6. Fill in `.env` with your own test values
+
+       BASE_URL=https://workaafrica.com
+       TEST_USER_EMAIL=<your test account email>
+       TEST_USER_PASSWORD=<your test account password>
+
+7. Create a working branch from `main`
+
+       git switch -c feature/<area>
+
+### Running Tests
+
+- Run all UI tests
+
+      npx playwright test
+
+- Run a single test file
+
+      npx playwright test tests/e2e/login.spec.js
+
+- Run tests in a specific browser
+
+      npx playwright test --project=firefox
+
+- Run tests with the browser visible
+
+      npx playwright test --headed
+
+- Open the HTML test report
+
+      npx playwright show-report
+
+- Run API tests with Newman
+
+      npx newman run tests/api/worka-api.postman_collection.json
+
+## Branching
+| Branch | Purpose |
+|---|---|
+| `main` | Stable, reviewed work only. No direct commits. |
+| `feature/planning` | Test plan, feature inventory, bug report template |
+| `feature/exploratory` | Test plan, Test case, and bugs documentation |
+| `feature/automation` | API tests and UI automation scripts |
+| `feature/completion` | Test review, and test completion documentation |
+
 
 ## Deliverables
 
