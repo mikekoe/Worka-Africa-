@@ -1,0 +1,23 @@
+{
+  "name": "worka-africa",
+  "version": "1.0.0",
+  "description": "Quality assurance project for [Worka Africa](https://workaafrica.com), an AI-powered jobs marketplace connecting employers in Africa with talent across the diaspora.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikekoe/Worka-Africa-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mikekoe/Worka-Africa-/issues"
+  },
+  "homepage": "https://github.com/mikekoe/Worka-Africa-#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^26.6.11"
+  }
+}

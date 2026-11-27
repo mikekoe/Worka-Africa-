@@ -1,143 +1,309 @@
+# Work Africa End-to-End Web Application QA & AI/LLM Evaluation
 
-# Worka Africa QA Suite
+Quality assurance project for [Worka Africa](https://workaafrica.com), an AI-powered jobs marketplace connecting employers in Africa with talent across the diaspora.
 
-Quality assurance project for [Worka Africa](https://workaafrica.com), an AI-powered jobs marketplace that connects employers in Africa with talent across the diaspora. This repo holds the test plan, test cases, automation scripts, and bug reports for the platform.
+This repository contains test documentation, functional and AI/LLM evaluation test cases, Playwright automation scripts, API test collections, and defect reports. The project focuses on validating application functionality, user workflows, and the quality and reliability of AI-generated outputs.
 
 ## Scope
 
-**Candidate features**
-- Registration, login, and profile setup
-- Job browsing and AI semantic job search
+### Candidate Features
+- User registration, login, and profile setup
+- Job browsing and AI-powered semantic job search
 - AI CV generator and cover letter writer
 - ATS score checker
-- Auto-apply
+- Auto-apply functionality
 - Portfolio builder
 - Salary insights and skills gap analyzer
-- Interview prep
+- Interview preparation
 
-**Employer features**
+### Employer Features
 - Job posting and management
-- AI-ranked applicant matching
+- AI-powered applicant matching and ranking
 
-**Site-wide**
+### Site-wide Features
 - Navigation, pricing, blog, and footer links
-- Responsive layout and cross-browser behavior
-- Performance, accessibility, and basic security checks
+- Responsive layout and cross-browser behaviour
+- Application performance and accessibility
+- Basic security and input validation checks
+
+*Feature availability will be verified during exploratory testing. Features that cannot be accessed or exercised within the project timeframe will be documented accordingly.*
 
 ## Test Types
 
-- Functional and manual exploratory 
-- End-to-end Regression testing (Playwright) 
-- UI/UX and responsive testing
-- API testing (Postman)
-- Cross-browser and cross-device testing
-- CI/CD Pipeline Testing and Validation
-- Accessibility Testing (WCAG) compliance (axe devtools)
-- Performance testing(Apache Jmeter)
+- **Functional Testing:** Manual and exploratory testing of application features and user workflows.
+- **End-to-End Regression Testing:** Playwright automation of critical user journeys.
+- **UI/UX and Responsive Testing:** Validation of layouts, navigation, and usability across screen sizes.
+- **API Testing:** Positive, negative, and boundary testing of accessible API endpoints using Postman.
+- **Cross-browser Testing:** Verification of critical workflows across supported browsers.
+- **AI/LLM Evaluation:** Basic black-box evaluation of AI-powered features using predefined prompts and expected behaviours.
+- **Accessibility Testing:** Basic WCAG-oriented checks using axe DevTools.
+- **Performance Testing:** Load and response-time checks using Apache JMeter.
+- **CI Pipeline Validation:** Verification of automated test execution and reporting through GitHub Actions, where configured.
 
+## AI/LLM Evaluation Approach
+
+AI-powered features will be evaluated from an end-user perspective without accessing or modifying the underlying AI models.
+
+The evaluation will focus on four areas:
+
+| Evaluation Area | What is Being Tested |
+|---|---|
+| Semantic Relevance | Whether AI job search returns relevant results for exact keywords, related terms, and paraphrased queries. |
+| Instruction Following | Whether generated CVs and cover letters follow the user's instructions and supplied information. |
+| Hallucination Detection | Whether AI-generated content introduces fabricated qualifications, skills, experience, or other unsupported facts. |
+| Output Consistency | Whether repeated prompts produce reasonably consistent and relevant outputs without changing important candidate information. |
+
+### Evaluation Method
+- Prepare a small set of predefined test prompts using fictional candidate information.
+- Define expected behaviour for each prompt before execution.
+- Submit prompts through the website's available AI features.
+- Record actual responses and evaluate them against the expected behaviour.
+- Use a simple 1–5 scoring scale to assess output quality.
+- Document unexpected responses, inaccuracies, and potential AI-related defects.
+
+**Scoring Criteria**
+
+| Score | Description |
+|---|---|
+| 5 | Fully satisfies expectations. |
+| 4 | Meets expectations with minor issues. |
+| 3 | Partially satisfies expectations. |
+| 2 | Has significant issues. |
+| 1 | Fails to satisfy expectations. |
+
+Evaluation results will be documented using Google Sheets and summarised in the project reports.
+
+*This is a basic black-box evaluation exercise. No model training, custom AI frameworks, or specialised LLM evaluation platforms are required.*
 
 ## Tech Stack
 
-- Playwright for E2E automation
-- Postman for API tests
-- Jmeter and axe devtools for performance and accessibility
-- GitHub Actions for CI
+| Tool | Purpose |
+|---|---|
+| Playwright | End-to-end UI automation and regression testing |
+| TypeScript | Automation scripts and basic evaluation assertions |
+| Postman | API testing and request validation |
+| Newman | Command-line execution of Postman collections |
+| Apache JMeter | Performance and load testing |
+| axe DevTools | Accessibility testing |
+| Google Sheets | AI evaluation dataset, scoring, and results |
+| GitHub Actions | Test automation and CI pipeline execution |
+| Git | Version control and collaboration |
 
-## Repo Structure
+## Repository Structure
 
-    ├── docs/            # Test plan,  bug report, test-summary
-    ├── tests/
-    │   ├── e2e/         # UI automation
-    │   └── api/         # API tests
-    ├── bug-reports/     # Logged defects with steps and screenshots
-    └── README.md
+```text
+Worka-Africa-qa/
+├── docs/
+│   ├── test-plan.md
+│   ├── test-summary-report.md
+│   ├── ai-evaluation-report.md
+│   └── bug-reports/
+│   
+├── tests/
+│   ├── ui-e2e/
+│   │   ├── authentication/
+│   │   ├── job-search/
+│   │   ├── candidate-profile/
+│   │   └── ai-features/
+│   
+│   ├── api/
+│   └── ai-evaluation/
+│       └── evaluation-tests
+│   
+├── postman/
+│   └── worka-api.postman_collection.json
+│   
+├── jmeter/
+│   ├── reports/
+│   ├── results/
+│   └── worka-performance.jmx
+│   
+├── .github/
+│   └── workflows/
+│   
+├── .env.example
+├── package.json
+├── playwright.config.ts
+└── README.md
+```
 
+---
 
 ## Getting Started
 
 ### Prerequisites
 
-- Git
-- Node.js (LTS version) and npm
-- A modern browser (Chrome, Firefox, Safari, or Edge)
-- Postman (for running API collections manually)
+Install the following tools:
 
-### Setup
+- [Git](https://git-scm.com/)
+- [Node.js (LTS)](https://nodejs.org/) and npm
+- [Playwright](https://playwright.dev/)
+- [Postman](https://www.postman.com/)
+- [Newman](https://www.npmjs.com/package/newman) (for command-line API test execution)
+- [Apache JMeter](https://jmeter.apache.org/) (for performance testing)
+- [axe DevTools](https://www.deque.com/axe/devtools/) (for accessibility testing)
+- A supported browser such as Chromium, Firefox, or WebKit
 
-1. Clone the repository using SSH (ssh keys must have been added to github repo settings before this step)
+Google Sheets will be used for recording AI evaluation results. No additional LLM evaluation framework or AI API SDK is required.
 
-       git clone git@github.com:mikekoe/Worka-Africa-.git
+### Installation References
 
-2. Move into the project folder
+- [Playwright Installation](https://playwright.dev/docs/intro)
+- [Node.js Installation](https://nodejs.org/en/download)
+- [Postman Documentation](https://learning.postman.com/)
+- [Newman Documentation](https://learning.postman.com/docs/collections/using-newman-cli/command-line-integration-with-newman/)
+- [JMeter Documentation](https://jmeter.apache.org/usermanual/get-started.html)
+- [Java](https://www.java.com/en/download/manual.jsp)
+- [axe DevTools](https://www.deque.com/axe/devtools/)
 
-       cd worka-africa-qa-
+---
+## Setup
 
-3. Install dependencies
+### 1. Clone the Repository
 
-       npm install
+```bash
+git clone git@github.com:mikekoe/Worka-Africa-qa.git
+```
 
-4. Install Playwright browsers
+### 2. Navigate to the Project Directory
 
-       npx playwright install
+```bash
+cd Worka-Africa-qa
+```
 
-5. Create your environment file from the template
+### 3. Configure Environment Variables
 
-       cp .env.example .env
+Create your local environment file:
 
-6. Fill in `.env` with your own test values
+```bash
+cp .env.example .env
+```
 
-       BASE_URL=https://workaafrica.com
-       TEST_USER_EMAIL=<your test account email>
-       TEST_USER_PASSWORD=<your test account password>
+### 4. Update `.env` with your test environment details:
 
-7. Create a working branch from `main`
+```env
+BASE_URL=https://workaafrica.com
+TEST_USER_EMAIL=<your-test-account-email>
+TEST_USER_PASSWORD=<your-test-account-password>
+```
 
-       git switch -c feature/<area>
+## Running Tests
 
-### Running Tests
+### Playwright
 
-- Run all UI tests
+Generate Playwright tests
+```bash
+npx playwright test codegen
+```
 
-      npx playwright test
+Run all UI tests:
 
-- Run a single test file
+```bash
+npx playwright test
+```
 
-      npx playwright test tests/e2e/login.spec.js
+Run a specific test file:
 
-- Run tests in a specific browser
+```bash
+npx playwright test tests/e2e/authentication/login.spec.ts
+```
 
-      npx playwright test --project=firefox
+Run tests in headed mode:
 
-- Run tests with the browser visible
+```bash
+npx playwright test --headed
+```
 
-      npx playwright test --headed
+View the HTML test report:
 
-- Open the HTML test report
+```bash
+npx playwright show-report
+```
 
-      npx playwright show-report
+---
+### API Tests with Newman
 
-- Run API tests with Newman
+Run a Postman collection:
 
-      npx newman run tests/api/worka-api.postman_collection.json
+```bash
+npx newman run postman/worka-api.postman_collection.json
+```
 
-## Branching
-| Branch | Purpose |
-|---|---|
-| `main` | Stable, reviewed work only. No direct commits. |
-| `feature/planning` | Test plan, feature inventory, bug report template |
-| `feature/exploratory` | Test plan, Test case, and bugs documentation |
-| `feature/automation` | API tests and UI automation scripts |
-| `feature/completion` | Test review, and test completion documentation |
+---
+### JMeter
 
+- Open JMeter GUI
+
+```bash
+jmeter
+```
+
+- Navigate to working directory
+
+```bash
+cd performance/jmeter
+```
+
+- Configure HTTP Request Defaults, HTTP Header Manager, User Defined Variables, HTTP methods
+
+```bash
+HTTP Configuration
+Protocol: HTTP
+Server: greenlife.localhost
+Port: 8000
+Authorization: token ${API_KEY}:${API_SECRET}
+Accept: application/json
+Content-Type: application/json
+```
+
+- Executing Jmeter in Non-GUI mode
+
+```bash
+jmeter -n \
+  -t GreenLife_ERPNext_Performance_Test.jmx \
+  -l results/stress/stress_test.jtl \
+  -e \
+  -o reports/stress_report
+```
+
+- Open the generated HTML report
+```bash
+open reports/stress_report/index.html
+```
+
+---
+### AI/LLM Evaluation
+
+AI evaluation will initially be performed through the website's accessible AI features.
+
+1. Select a predefined evaluation prompt.
+2. Submit it through the relevant AI feature.
+3. Compare the generated response against the expected behaviour.
+4. Assign a score using the evaluation criteria.
+5. Record the actual output, observations, and any defects in the evaluation dataset.
+
+Where appropriate, Playwright will automate prompt submission and capture generated responses. Human review will be used to assess relevance, accuracy, instruction following, and potential hallucinations.
 
 ## Deliverables
 
-- Test plan and test case documentation
-- Automated test suites
-- Bug reports with severity and priority
+- Test plan and user stories document
+- Functional and exploratory test cases
+- Playwright end-to-end automation suite
+- Postman API test collection and execution results
+- AI/LLM evaluation dataset, criteria, and results
+- Defect reports with reproduction steps, severity, and priority
+- Performance and accessibility test results, where executed
 - Test summary report
 
+## Project Scope and Limitations
+
+This QA project focused on practical testing of an AI-powered web application.
+
+The AI evaluation is limited to observable application behaviour and generated outputs. It does not involve model development, training, fine-tuning, or internal model performance analysis.
+
+Testing will prioritise critical user journeys, high-risk functionality, and accessible features. Any blocked, unavailable, or untestable functionality will be clearly documented rather than assumed to have passed.
+
 ## Author
-Michael Adeyeye - QA Engineer 
 
-
+**Michael Adeyeye**  
+QA Engineer
